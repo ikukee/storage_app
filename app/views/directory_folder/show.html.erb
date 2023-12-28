@@ -1,0 +1,8 @@
+<a href="<%= @directory_folder.id %>/upload"> UPLOAD FILE </a>
+<h1><%=@directory_folder.name%></h1>
+<div class="row">
+<% @items.each do |item|%>
+    <%= render partial: 'item_card', locals:{item:item}%>
+<%end %>
+
+</div>
