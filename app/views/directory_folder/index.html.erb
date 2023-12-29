@@ -1,6 +1,6 @@
 <div class="row p-5">
 <% DirectoryFolder.all.each do |dir| %>
-    <%= render partial: 'folder_card', locals:{dir: dir} %>
+    <%= render partial: 'main/folder_card', locals:{dir: dir} %>
 
 <% end %>
 </div>

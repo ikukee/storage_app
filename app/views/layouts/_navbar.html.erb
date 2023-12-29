@@ -1,8 +1,8 @@
 <div class="pos-f-t">
   <div class="collapse" id="navbarToggleExternalContent">
     <div class="bg-dark p-4">
-      <h5 class="text-white h4">LIST</h5>
-      <%= link_to 'HOME', "/", class: "btn btn-dark"%>
+      <h5 class="text-white h4"><% if session[:user_id] != nil %><%= session[:user_email] %> | <%= session[:user_id] %> <a href="/logout">LOGOUT</a><%else%> <a href="/login">LOGIN</a><%end%></h5>
+      <%= link_to 'HOME', "/directory_folder", class: "btn btn-dark"%>
       <%= link_to 'CREATE DIRECTORY', "/new", class: "btn btn-dark" %>
       <%= link_to 'Destroy them all', "a/reset_db", method: :delete, confirm: 'Are you crazy?', class: "btn btn-dark" %>
     </div>

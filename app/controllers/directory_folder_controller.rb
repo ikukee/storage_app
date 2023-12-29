@@ -1,13 +1,13 @@
 class DirectoryFolderController < ApplicationController
-
+  before_action :is_logged_in
+  def new
+    @directory_folder = DirectoryFolder.new
+  end
     def show
       @directory_folder = DirectoryFolder.find(params[:id])
       @items = @directory_folder.items
     end
-    def new
-        @directory_folder = DirectoryFolder.new
-
-    end
+    
     
       # GET /evac_centers/1/edit
     def edit
@@ -35,13 +35,20 @@ class DirectoryFolderController < ApplicationController
         respond_to do |format|
           if @directory_folder.valid?
             @directory_folder.save
-            format.html{redirect_to "/"}
+            format.html{redirect_to @directory_folder}
           else
             #format.html{redirect_to "/"}
             format.turbo_stream{render turbo_stream: turbo_stream.update("folder_form",partial:"form",locals:{directory_folder:@directory_folder})}
             #format.turbo_stream{render turbo_stream: turbo_stream.update("folder_form","Passwords did not match!")}
           end
         end
+    end
+    def reset_database
+      Item.all.each do |item|
+          item.image.purge
+      end
+      DirectoryFolder.destroy_all
+      redirect_to "/directory_folder"
     end
     private
     def directory_folder_params
