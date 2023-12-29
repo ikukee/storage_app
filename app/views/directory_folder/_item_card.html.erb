@@ -1,16 +1,26 @@
-<div class="col-2 m-2">
+<div class="col-6 m-2">
   <div class="card">
     <div class="card-header">
       <%= item.file_name %>
     </div>
-    <img class="card-img-top" src="<%= rails_blob_url(item.image) %>">
+    <% if item.file_type == "video" %>
+      <video src="<%= rails_blob_url(item.image) %>" controls></video>
+    <% elsif item.file_type == "image" %>
+      <img class="card-img-top" src="<%= rails_blob_url(item.image) %>">
+    <%end%>
     <div class="card-body">
       <blockquote class="blockquote mb-0">
         <p></p>
         <p><%= item.visibility %></p>
         <%= item.image.filename%>
-       
       </blockquote>
+    </div>
+    <div class="card-footer bg-transparent border-dark">
+      <a href="<%= @directory_folder.id%>/item/<%= item.id %>/edit" class="btn btn-dark bg-dark m-1 ">EDIT</a>
+      <%= button_to "delete", {:controller => :item, :action => 'delete_item',:item_id => item.id,:id => @directory_folder.id,:method => :delete},{form_class: 'd-inline', class:"btn btn-danger bg-danger m-1"} %>
     </div>
   </div>
 </div>
+  <style>
+    *{outline:0px dashed red;}
+  </style>

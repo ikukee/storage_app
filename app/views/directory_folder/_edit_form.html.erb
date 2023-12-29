@@ -1,0 +1,36 @@
+<%= form_with url: "edit/folder", method: :post, model: directory_folder do |form| %>
+  <% invalid_name = directory_folder.errors.include?(:name) %>
+  <% invalid_visibility = directory_folder.errors.include?(:visibility) %>
+  <div class="col-md-6">
+    <%= form.label :name, class: "form-label poppins" %>
+    <div class="form-group">
+      <%= form.text_field :name, class:"form-control #{'is-invalid' if invalid_name}", placeholder: "Name"%>
+      <% if invalid_name %>
+        <div class="invalid-feedback d-block">
+          <% directory_folder.errors[:name].each do |error_message| %>
+            <%= error_message %>.
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <%= form.label :visibility, class: "form-label poppins" %>
+    <div class="form-group">
+      <%= form.text_field :visibility, class:"form-control #{'is-invalid' if invalid_visibility}", placeholder: "Visibility"%>
+      <% if invalid_visibility %>
+        <div class="invalid-feedback d-block">
+          <% directory_folder.errors[:visibility].each do |error_message| %>
+            <%= error_message %>.
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="col-12">
+    <div class="d-flex justify-content-end">
+      <%= form.submit "Submit", class: "btn btn-primary" %>
+    </div>
+  </div>
+<%end%>

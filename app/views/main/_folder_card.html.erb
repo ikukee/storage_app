@@ -1,8 +1,8 @@
 
-<div class="card border-dark p-5 m-2" style="max-width: 18rem;">
-  <div class="card-header bg-transparent border-success"><%= dir.name %></div>
+<div class="card border-dark m-2" >
+  <div class="card-header bg-dark border-dark text-light"><h2><%= dir.name %></h2></div>
   <div class="card-body text-dark">
-    <h5 class="card-title">ITEMS: <%= dir.items.length %> </h5>
+    <p class="card-title">ITEMS: <%= dir.items.length %> </p>
   </div>
-  <div class="card-footer bg-transparent border-success"><a href="<%= dir.id %>" class="btn btn-primary bg-dark">VIEW</a></div>
+  <div class="card-footer bg-transparent border-dark"><a href="<%= dir.id %>" class="btn  btn-dark bg-dark m-1">VIEW</a><a href="<%= dir.id %>/edit" class="btn btn-dark bg-dark m-1">EDIT</a></div>
 </div>

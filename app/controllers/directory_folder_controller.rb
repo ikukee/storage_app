@@ -11,9 +11,21 @@ class DirectoryFolderController < ApplicationController
     
       # GET /evac_centers/1/edit
     def edit
-        
+        @directory_folder = DirectoryFolder.find(params[:id])
     end
     
+    def edit_folder
+      @directory_folder = DirectoryFolder.find(params[:id])
+      respond_to do |format|
+        if @directory_folder.update(directory_folder_params)
+          format.html { redirect_to @directory_folder, notice: "Evac center was successfully updated." }
+          format.json { render :show, status: :ok, location: @directory_folder }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @directory_folder.errors, status: :unprocessable_entity }
+        end
+      end
+    end
     # POST /evac_centers or /evac_centers.json
     def create
         @directory_folder = DirectoryFolder.new
@@ -31,27 +43,8 @@ class DirectoryFolderController < ApplicationController
           end
         end
     end
-    def upload
-      @item = Item.new
-    end
-    def upload_item
-      @item = Item.new
-      @item.directory_folder_id = params[:id]
-      @item.file_name = params[:item][:file_name]
-      @item.image.attach(params[:item][:image_upload])
-      respond_to do |format|
-          if @item.valid?
-            if params[:item][:image_upload] == nil 
-              format.turbo_stream{render turbo_stream: turbo_stream.update("error","Upload file required.")}
-            else
-              @item.save
-              format.html{redirect_to "/#{params[:id]}"}
-            end
-          else
-            #format.html{redirect_to "/"}
-            format.turbo_stream{render turbo_stream: turbo_stream.update("item_form",partial:"upload_form",locals:{item:@item})}
-            #format.turbo_stream{render turbo_stream: turbo_stream.update("folder_form","Passwords did not match!")}
-          end
-        end
+    private
+    def directory_folder_params
+      params.require(:directory_folder).permit(:name, :visibility)
     end
 end
