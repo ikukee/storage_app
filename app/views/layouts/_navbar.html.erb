@@ -1,10 +1,10 @@
 <div class="pos-f-t">
   <div class="collapse" id="navbarToggleExternalContent">
     <div class="bg-dark p-4">
-      <h5 class="text-white h4">Collapsed content</h5>
-      <span class="text-muted"><a href="/">HOME</a></span>
-      <span class="text-muted"><a href="/new">CREATE FOLDER </a></span>
-      <%= link_to 'Destroy them all', "a/reset_db", method: :delete, confirm: 'Are you crazy?' %>
+      <h5 class="text-white h4">LIST</h5>
+      <%= link_to 'HOME', "/", class: "btn btn-dark"%>
+      <%= link_to 'CREATE DIRECTORY', "/new", class: "btn btn-dark" %>
+      <%= link_to 'Destroy them all', "a/reset_db", method: :delete, confirm: 'Are you crazy?', class: "btn btn-dark" %>
     </div>
   </div>
   <nav class="navbar navbar-dark bg-dark">

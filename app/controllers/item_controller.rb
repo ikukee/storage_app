@@ -50,7 +50,7 @@ class ItemController < ApplicationController
       @item = Item.find(params[:item_id])
       @item.image.purge
       @item.destroy
-      
+      redirect_to @directory_folder
     end
     private
     def item_params
