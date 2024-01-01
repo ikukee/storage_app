@@ -1,12 +1,15 @@
+
 <%= form_with url:"/login/proceed", method: :post do |f| %>
-  <div class="row">
+  <div class="row mt-5">
     <div class="col"></div>
-    <div class="col">
-        <%= f.email_field :email, class: "form-control p-2", placeholder: "Key"%>
-      <%= f.password_field :key, class: "form-control p-2", placeholder: "Key"%>
+    <div class="col border p-5 bg-light shadow">
+        <p class="h3">EMAIL </p>
+        <%= f.email_field :email, class: "form-control form-control-lg p-3 ", placeholder: "EMAIL"%>
+        <p class="h3">PASSWORD </p>
+        <%= f.password_field :key, class: "form-control form-control-lg p-3 ", placeholder: "Key"%>
       <div id= "login_errorArea"></div>
       <div class="col">
-        <%= f.submit "LOGIN", style:"font-size: 1.5em;", class:"btn btn-light w-100 oswald fw"%>
+        <%= f.submit "LOGIN", style:"font-size: 1.5em;", class:"btn btn-dark w-100 oswald fw mt-3"%>
       </div>
     </div>
     <div class="col"></div>

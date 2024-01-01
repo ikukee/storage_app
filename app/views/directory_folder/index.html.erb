@@ -1,4 +1,7 @@
+
+<%= link_to '+ CREATE DIRECTORY', "/new", class: "btn btn-success mt-5" %>
 <div class="row p-5">
+        
 <% DirectoryFolder.all.each do |dir| %>
     <%= render partial: 'main/folder_card', locals:{dir: dir} %>
 
